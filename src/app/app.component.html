@@ -1,0 +1,14 @@
+<div class="container">
+  <header app-header 
+    [filters]="filters" 
+    (toggleArhive)="toggleArhive($event)" 
+    (setFilters)="setFilters($event)" 
+    [selectedDocId]="selectedDocId"
+    (deleteDocEvent)="clearDocId()"
+  ></header>
+  <main app-main 
+    [filters]="filters" 
+    (selectDoc)="selectDocument($event)"
+    [selectedDocId]="selectedDocId"
+  ></main>
+</div>

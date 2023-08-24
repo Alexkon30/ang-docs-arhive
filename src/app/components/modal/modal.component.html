@@ -1,0 +1,50 @@
+<mat-card class="card">
+  <div class="card__header">
+    <div class="title">Документ</div>
+    <mat-icon (click)="close()" class="close">close</mat-icon>
+  </div>
+  <mat-card-content class="card__content" [formGroup]="form">
+    <section>
+      <mat-checkbox formControlName="isMain">Основной документ, удостоверяющий личность</mat-checkbox>
+      <mat-checkbox formControlName="isArchive">Архивный документ</mat-checkbox>
+    </section>
+    <section>
+      <mat-form-field>
+        <mat-label>Вид документа:</mat-label>
+        <mat-select formControlName="doctypeControl">
+          <mat-option *ngFor="let type of docTypes" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Серия:</mat-label>
+        <input matInput formControlName="serialControl">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Номер:</mat-label>
+        <input matInput formControlName="numberControl">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Дата выдачи:</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="issueDateControl" placeholder="ДД.ММ.ГГГГ">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Организациии:</mat-label>
+        <mat-select formControlName="organizationControl">
+          <mat-option *ngFor="let org of organizations" [value]="org">{{org}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="width: 50%;">
+        <mat-label>Код подразделения:</mat-label>
+        <input matInput formControlName="orgCodeControl" mask="000-000" placeholder="000-000">
+      </mat-form-field>
+    </section>
+  </mat-card-content>
+  <mat-card-footer class="card__footer">
+    <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+    <button mat-raised-button (click)="close()">Выход</button>  
+  </mat-card-footer>
+</mat-card>
